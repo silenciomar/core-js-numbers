@@ -188,8 +188,18 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  let result;
+  if (pow === 1) {
+    result = Math.round(num / 10) * 10;
+  } else if (pow === 2) {
+    result = Math.round(num / 100) * 100;
+  } else if (pow === 3) {
+    result = Math.round(num / 1000) * 1000;
+  } else {
+    result = num;
+  }
+  return result;
 }
 
 /**
@@ -214,7 +224,7 @@ function isPrime(/* n */) {
   throw new Error('Not implemented');
   // let result;
   // if (n % n === 0 && n / 1 === n) {
-  //   result = false;
+  //   result = true;
   // }
   // return result;
 }
@@ -286,8 +296,13 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  const stack = [];
+
+  for (let i = 1; i <= n; i += 1) {
+    stack.push(i);
+  }
+  return stack.reduce((sum, x) => sum + x, 0);
 }
 
 /**
@@ -301,8 +316,14 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  const string = num.toString();
+  const stack = [];
+
+  for (let i = 0; i < string.length; i += 1) {
+    stack.push(Number(string[i]));
+  }
+  return stack.reduce((sum, x) => sum + x, 0);
 }
 
 /**
@@ -452,8 +473,8 @@ function isInteger(/* number */) {
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+function getFloatOnString(str) {
+  return Number.parseFloat(str);
 }
 
 /**
