@@ -611,8 +611,8 @@ function getMaxNumber(firstNumber, secondNumber) {
  * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
  * -1, 1 => -1 | 0 | 1
  */
-function getRandomInteger(/* min, max */) {
-  throw new Error('Not implemented');
+function getRandomInteger(min, max) {
+  return Math.trunc(Math.random() * (max - min) + min);
 }
 
 /**
@@ -642,8 +642,15 @@ function getHypotenuse(a, b) {
  * 10 => 5
  * 15 => 8
  */
-function getCountOfOddNumbers(/* number */) {
-  throw new Error('Not implemented');
+function getCountOfOddNumbers(number) {
+  const newNumber = Math.abs(number);
+  const arr = [];
+  for (let i = 0; i <= newNumber; i += 1) {
+    if (i % 2 === 1) {
+      arr.push([i]);
+    }
+  }
+  return arr.length;
 }
 
 module.exports = {
