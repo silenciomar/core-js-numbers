@@ -218,13 +218,16 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
-  // let result;
-  // if (n % n === 0 && n / 1 === n) {
-  //   result = true;
-  // }
-  // return result;
+function isPrime(n) {
+  if (n <= 1) {
+    return false;
+  }
+  for (let i = 2; i <= Math.sqrt(n); i += 1) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -242,13 +245,12 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
-  // const newValue = Number(value);
-  // if (typeof newValue === 'number') {
-  //   return newValue;
-  // }
-  // return def;
+function toNumber(value, def) {
+  const newValue = Number(value);
+  if (Number.isNaN(newValue)) {
+    return def;
+  }
+  return newValue;
 }
 
 /**
@@ -279,8 +281,27 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  const fiboStack = [];
+  let fiboN1 = 0;
+  let fiboN2 = 1;
+  let fiboNextN;
+
+  if (index === 0) {
+    return 0;
+  }
+  if (index === 1) {
+    return 1;
+  }
+  fiboStack.push(fiboN1);
+  fiboStack.push(fiboN2);
+  for (let i = 2; i <= index; i += 1) {
+    fiboNextN = fiboN1 + fiboN2;
+    fiboStack.push(fiboNextN);
+    fiboN1 = fiboN2;
+    fiboN2 = fiboNextN;
+  }
+  return fiboStack[index];
 }
 
 /**
@@ -335,8 +356,9 @@ function getSumOfDigits(num) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  const exponent = Math.log(num) / Math.log(2);
+  return exponent % 1 === 0;
 }
 
 /**
